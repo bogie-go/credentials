@@ -1,4 +1,4 @@
-module github.com/roonglit/credentials
+module github.com/bogie-go/credentials
 
 go 1.24
 

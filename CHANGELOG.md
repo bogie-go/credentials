@@ -10,12 +10,27 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Removing the legacy reader is the breaking change that earns a major bump, and
 under Go's semantic import versioning it also renames the module path to
-`github.com/roonglit/credentials/v2`. Before cutting it:
+`github.com/bogie-go/credentials/v2`. Before cutting it:
 
 - run `credentials migrate` everywhere and commit the results
 - set `CREDENTIALS_ALLOW_LEGACY=0` in CI so a file cannot regress
 
 By then no file is on the old format and the import rewrite is the only work.
+
+## [1.5.0] - 2026-10-02
+
+### Changed
+
+- **The module moved to `github.com/bogie-go/credentials`.** It is now the
+  credentials library of [Bogie](https://github.com/bogie-go/bogie), the Go
+  service next to your Rails app, and lives in that organisation. The code is
+  unchanged from 1.4.0; only the import path is. To move:
+
+      go get github.com/bogie-go/credentials@v1.5.0
+      sed -i 's|github.com/roonglit/credentials|github.com/bogie-go/credentials|g' $(grep -rl roonglit/credentials --include='*.go' .)
+      go mod tidy
+
+  The old path keeps serving 1.4.0 and earlier; nothing new lands there.
 
 ## [1.3.0] - 2026-09-01
 
@@ -137,8 +152,9 @@ consumers use so a future change cannot break it silently.
 Initial release: encrypted credentials file, master key, `credentials edit`, and
 a reader that unmarshals into a user-supplied struct with environment overrides.
 
-[Unreleased]: https://github.com/roonglit/credentials/compare/v1.3.0...HEAD
-[1.3.0]: https://github.com/roonglit/credentials/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/roonglit/credentials/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/roonglit/credentials/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/roonglit/credentials/releases/tag/v1.0.0
+[Unreleased]: https://github.com/bogie-go/credentials/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/bogie-go/credentials/compare/v1.4.0...v1.5.0
+[1.3.0]: https://github.com/bogie-go/credentials/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/bogie-go/credentials/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/bogie-go/credentials/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/bogie-go/credentials/releases/tag/v1.0.0

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/roonglit/credentials/pkg/credentials"
+	"github.com/bogie-go/credentials/pkg/credentials"
 )
 
 const usage = `Usage: credentials <command> [-e ENVIRONMENT]

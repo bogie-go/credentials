@@ -27,7 +27,7 @@ bundled `.gitignore` enforces.
 ## Installation
 
 ```sh
-go install github.com/roonglit/credentials/cmd/credentials@latest
+go install github.com/bogie-go/credentials/cmd/credentials@latest
 ```
 
 ## Environments
@@ -129,7 +129,7 @@ file cannot quietly regress.
 Run the following command to install the credentials package into your project:
 
 ```sh
-go get github.com/roonglit/credentials/pkg/credentials
+go get github.com/bogie-go/credentials/pkg/credentials
 ```
 
 ### Define Your Configuration Struct
@@ -144,7 +144,7 @@ import (
     "log"
     "time"
     
-    "github.com/roonglit/credentials/pkg/credentials"
+    "github.com/bogie-go/credentials/pkg/credentials"
 )
 
 // Define your custom configuration struct
