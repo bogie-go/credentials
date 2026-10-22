@@ -17,6 +17,15 @@ under Go's semantic import versioning it also renames the module path to
 
 By then no file is on the old format and the import rewrite is the only work.
 
+## [1.6.0] - 2026-10-22
+
+### Added
+
+- `ApplyEnvOverrides(cfg)`: sets a config struct's fields from environment
+  variables alone, with no file, by the same rule `Read` applies on top of one
+  (mapstructure tag upper-cased, nested structs joined by an underscore). For a
+  process configured entirely through its environment, and for tests.
+
 ## [1.5.0] - 2026-10-02
 
 ### Changed

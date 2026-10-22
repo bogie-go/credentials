@@ -151,3 +151,21 @@ func TestFlatSharedReadsTheWholeFile(t *testing.T) {
 		t.Fatalf("cfg = %+v", cfg)
 	}
 }
+
+// With no file at all, the environment alone fills nested sections: what a
+// test, or a container configured only through its environment, relies on.
+func TestApplyEnvOverridesWithoutAFile(t *testing.T) {
+	t.Setenv("FACEBOOK_APP_ID", "from-env")
+	t.Setenv("NAME", "top-env")
+
+	var cfg nestedConfig
+	if err := ApplyEnvOverrides(&cfg); err != nil {
+		t.Fatalf("ApplyEnvOverrides: %v", err)
+	}
+	if cfg.Name != "top-env" || cfg.Facebook.AppID != "from-env" {
+		t.Fatalf("cfg = %+v", cfg)
+	}
+	if cfg.Optional != nil {
+		t.Errorf("an optional section nothing set was materialised: %+v", cfg.Optional)
+	}
+}

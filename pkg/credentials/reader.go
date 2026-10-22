@@ -106,6 +106,14 @@ func (cr *ConfigReader) Read(environment string, config interface{}) error {
 	return applyEnvOverrides(config)
 }
 
+// ApplyEnvOverrides sets cfg's fields from environment variables alone, with
+// no file involved: the same rule Read applies on top of a file (each field's
+// mapstructure tag upper-cased, nested structs joined by an underscore). For a
+// process configured entirely through its environment, and for tests, which
+// must not depend on anyone's credentials. A value that does not parse is an
+// error, never a silent fallback.
+func ApplyEnvOverrides(cfg interface{}) error { return applyEnvOverrides(cfg) }
+
 // applyEnvOverrides lets environment variables win over the file, matching each
 // field's mapstructure tag upper-cased.
 //
